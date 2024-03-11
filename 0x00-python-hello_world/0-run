@@ -1,5 +1,4 @@
 #!/bin/bash
-python3 "$PYFILE"
 # Execute the Python script
 python3 "$PYFILE"
 
