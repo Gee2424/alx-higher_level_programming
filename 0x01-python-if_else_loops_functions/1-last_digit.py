@@ -2,7 +2,7 @@
 import random
 number = random.randint(-10000, 10000)
 str = str(number)[-1]
-last = int(str)
+last = number % 10
 if last > 5:
     str2 = ('and is greater than 5')
 elif last == 0:
