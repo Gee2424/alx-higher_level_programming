@@ -4,6 +4,7 @@ def pow(a, b):
     """Computes a to the power of b and returns the value."""
     return a ** b
 
+
 if __name__ == "__main__":
     print(pow(2, 2))
     print(pow(98, 2))
