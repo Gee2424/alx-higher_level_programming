@@ -4,6 +4,7 @@ def add(a, b):
     """Adds two integers and returns the result."""
     return a + b
 
+
 if __name__ == "__main__":
     # Test cases
     print(add(1, 2))
