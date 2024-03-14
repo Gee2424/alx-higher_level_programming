@@ -4,10 +4,7 @@ if [ -z "$PYFILE" ]; then
     exit 1
 fi
 python3 -m compileall -b $PYFILE
-
 compiled_name=$(echo $PYFILE | sed 's/\.py$//').pyc
 desired_name="${PYFILE}c"
-
 mv ${compiled_name} ${desired_name}
-
 echo "Compiling $PYFILE ..."
