@@ -1,10 +1,22 @@
 #!/bin/bash
+
 if [ -z "$PYFILE" ]; then
-    echo "PYFILE is not set."
+    echo "PYFILE environment variable is not set."
     exit 1
 fi
+
+echo "Compiling '$PYFILE'..."
 python3 -m compileall -b $PYFILE
-compiled_name=$(echo $PYFILE | sed 's/\.py$//').pyc
-desired_name="${PYFILE}c"
-mv ${compiled_name} ${desired_name}
-echo "Compiling $PYFILE ..."
+
+base_filename=$(basename "$PYFILE" .py)
+pyc_path="./__pycache__/${base_filename}.cpython-3?.pyc"
+actual_pyc_file=$(ls $pyc_path 2> /dev/null)
+
+if [ -z "$actual_pyc_file" ]; then
+    echo "Compiled file not found."
+    exit 1
+fi
+
+desired_pyc_name="${base_filename}.pyc"
+mv $actual_pyc_file $desired_pyc_name
+echo "Compilation finished: '$desired_pyc_name'"
