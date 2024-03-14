@@ -1,6 +1,4 @@
 #!/bin/bash
-
-# Ensure the PYFILE variable is set
 if [ -z "$PYFILE" ]; then
     echo "PYFILE is not set."
     exit 1
