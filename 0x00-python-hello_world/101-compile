@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Ensure the PYFILE variable is set
+if [ -z "$PYFILE" ]; then
+    echo "PYFILE is not set."
+    exit 1
+fi
+
+# Use Python to compile the file specified in $PYFILE
+python3 -m compileall -b $PYFILE
+
+# Renaming the generated .pyc file to $PYFILEc
+# Assuming PYFILE is in the current directory and has a .py extension
+compiled_name=$(echo $PYFILE | sed 's/\.py$//').pyc
+desired_name="${PYFILE}c"
+
+mv ${compiled_name} ${desired_name}
+
+echo "Compiling $PYFILE ..."
