@@ -1,8 +1,14 @@
 #!/usr/bin/python3
 def print_list_integer(my_list=[]):
-    for i in my_list:
-        print("{:d}".format(i))
+    """
+    Prints all integers in a list.
 
-if __name__ == "__main__":
-    my_list = [1, 2, 3, 4, 5]
-    print_list_integer(my_list)
+    Args:
+        my_list (list): The list of integers to be printed.
+
+    Returns:
+        None
+    """
+    for integer in my_list:
+        print("{:d}".format(integer))
+    
