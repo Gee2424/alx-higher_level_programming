@@ -1,35 +1,72 @@
 #include "lists.h"
-#include <stdlib.h>
 
 /**
-* is_palindrome - checks if a singly linked list is a palindrome
-* @head: double pointer to the head of the list
-* Return: 0 if it is not a palindrome, 1 if it is a palindrome
+* flip_list - Reverses the order of nodes in a linked list
+* @head: Pointer to the first node in the list
+*
+* Return: Void
+*/
+void flip_list(listint_t **head)
+{
+listint_t *previous = NULL;
+listint_t *current = *head;
+listint_t *upcoming = NULL;
+
+while (current)
+{
+upcoming = current->next;
+current->next = previous;
+previous = current;
+current = upcoming;
+}
+
+*head = previous;
+}
+
+/**
+* is_palindrome - Checks if a linked list is a palindrome
+* @head: Double pointer to the linked list
+*
+* Return: 1 if it is, 0 if not
 */
 int is_palindrome(listint_t **head)
 {
-listint_t *current = *head;
-int array[2048]; 
-int i = 0, start = 0, end;
+listint_t *slow = *head, *fast = *head, *temp = *head, *copy = NULL;
 
-if (!head || !*head || !(*head)->next) 
+if (*head == NULL || (*head)->next == NULL)
 return (1);
 
-while (current != NULL)
+while (1)
 {
-array[i++] = current->n;
-current = current->next;
+fast = fast->next->next;
+if (!fast)
+{
+copy = slow->next;
+break;
 }
-end = i - 1;
-
-
-while (start < end)
+if (!fast->next)
 {
-if (array[start] != array[end])
+copy = slow->next->next;
+break;
+}
+slow = slow->next;
+}
+
+flip_list(&copy);
+
+while (copy && temp)
+{
+if (temp->n == copy->n)
+{
+copy = copy->next;
+temp = temp->next;
+}
+else
 return (0);
-start++;
-end--;
 }
 
+if (!copy)
 return (1);
+
+return (0);
 }
